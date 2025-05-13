@@ -1,0 +1,67 @@
+﻿@model Ogrenci
+<h1>Öğrenci Ekle</h1>
+@if (TempData["sonuc"] != null)
+{
+    @if ((bool)TempData["sonuc"] == true)
+    {
+        <script>
+
+            alert("Kayıt işlemi başarılı")
+        </script>
+    }
+    else
+    {
+        <script>
+
+            alert("Kayıt işlemi başarısız")
+        </script>
+    }
+
+}
+
+
+<form class="d-block" id="ogrenciEkleForm" action="/Ogrenci/ogrenciekle" method="post">
+    <div class="mb-3">
+        <label class="form-label" asp-for="Ad"></label>
+        <input class="form-control" type="text" asp-for="Ad" maxlength="25" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="Soyad"></label>
+        <input class="form-control" type="text" asp-for="Soyad" maxlength="30" />
+    </div>
+
+    <input class="btn btn-success justify-content-center" value="Kaydet" type="submit" />
+
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#ogrenciEkleForm').submit(function (e) {
+            e.preventDefault(); 
+
+            var ogrenciData = {
+                Ad: $('#Ad').val(),
+                Soyad: $('#Soyad').val()
+            };
+
+               $.ajax({
+        url: '/Ogrenci/OgrenciEkle',
+        type: 'POST',
+        data: ogrenciData,
+        contentType: 'application/x-www-form-urlencoded', 
+        success: function (response) {
+            if (response.success) {
+                alert('Öğrenci başarıyla eklendi!');
+            } else {
+                alert('Bir hata oluştu, öğrenci eklenemedi!');
+            }
+        },
+        error: function () {
+            alert('Hata oluştu!');
+        }
+    });
+
+        });
+    });
+</script>

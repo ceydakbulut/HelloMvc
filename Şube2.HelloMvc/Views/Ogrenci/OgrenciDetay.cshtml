@@ -1,0 +1,23 @@
+﻿@model Ogrenci
+@{
+    ViewData["Title"] = "OgrenciDetay";
+}
+
+<form id="guncelleForm">
+    <input type="hidden" asp-for="OgrenciId" id="OgrenciId" />
+
+    <div class="mb-3">
+        <label class="form-label" asp-for="Ad"></label>
+        <input class="form-control" type="text" asp-for="Ad" maxlength="25" id="Ad" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="Soyad"></label>
+        <input class="form-control" type="text" asp-for="Soyad" maxlength="30" id="Soyad" />
+    </div>
+
+    <input class="btn btn-success justify-content-center" value="Güncelle" type="button" id="btnGuncelle" />
+</form>
+
+<div id="sonuc"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

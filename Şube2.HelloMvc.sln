@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Şube2.HelloMvc", "Şube2.HelloMvc\Şube2.HelloMvc.csproj", "{9B0B0094-6E0F-48E7-B5E6-4CB5382F5920}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DI_App", "DI_App\DI_App.csproj", "{904DA4A4-22CA-4E67-8008-9D6A5BF96FB9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B0B0094-6E0F-48E7-B5E6-4CB5382F5920}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B0B0094-6E0F-48E7-B5E6-4CB5382F5920}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B0B0094-6E0F-48E7-B5E6-4CB5382F5920}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B0B0094-6E0F-48E7-B5E6-4CB5382F5920}.Release|Any CPU.Build.0 = Release|Any CPU
+		{904DA4A4-22CA-4E67-8008-9D6A5BF96FB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{904DA4A4-22CA-4E67-8008-9D6A5BF96FB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{904DA4A4-22CA-4E67-8008-9D6A5BF96FB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{904DA4A4-22CA-4E67-8008-9D6A5BF96FB9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F7DDDE3F-551F-4103-ACD6-EE4BFED9A8D3}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,107 @@
+﻿@model IEnumerable<Ogrenci>
+
+<p>Öğrenci Listesi:</p>
+
+
+<h3>Öğrenci Listesi - Table örneği</h3>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Ogrenci Id</th>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>İşlem</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ogr in Model)
+        {
+            <tr id="row-@ogr.OgrenciId">
+                <td>@ogr.OgrenciId</td>
+                <td class="ad">@ogr.Ad</td>
+                <td class="soyad">@ogr.Soyad</td>
+                <td>
+                    <a href="/Ogrenci/OgrenciDetay/@ogr.OgrenciId">Detay</a>&nbsp;
+                    <button class="btn btn-danger silButton" data-id="@ogr.OgrenciId">Sil</button>
+                    <button class="btn btn-primary guncelleButton" data-id="@ogr.OgrenciId" data-ad="@ogr.Ad" data-soyad="@ogr.Soyad">Güncelle</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Güncelleme Formu -->
+<div id="guncelleForm" style="display:none; margin-top: 20px;">
+    <h4>Öğrenci Güncelle</h4>
+    <input type="hidden" id="guncelle-id" />
+    <label>Ad:</label><input type="text" id="guncelle-ad" /><br />
+    <label>Soyad:</label><input type="text" id="guncelle-soyad" /><br />
+    <button id="btnGuncelleKaydet">Kaydet</button>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Silme işlemi
+        $(document).on('click', '.silButton', function () {
+            var ogrenciId = $(this).data('id');
+
+            if (confirm('Emin misiniz?')) {
+                $.ajax({
+                    url: '/Ogrenci/OgrenciSil',
+                    type: 'POST',
+                    data: { id: ogrenciId },
+                    success: function (response) {
+                        if (response.success) {
+                            alert('Öğrenci başarıyla silindi!');
+                            $('#row-' + ogrenciId).remove();
+                        } else {
+                            alert('Öğrenci silinirken bir hata oluştu!');
+                        }
+                    },
+                    error: function () {
+                        alert('Silme işlemi sırasında bir hata oluştu!');
+                    }
+                });
+            }
+        });
+
+        // Güncelle formunu açma
+        $(document).on('click', '.guncelleButton', function () {
+            var id = $(this).data('id');
+            var ad = $(this).data('ad');
+            var soyad = $(this).data('soyad');
+
+            $("#guncelle-id").val(id);
+            $("#guncelle-ad").val(ad);
+            $("#guncelle-soyad").val(soyad);
+            $("#guncelleForm").show();
+        });
+
+        // Güncelleme işlemi
+        $("#btnGuncelleKaydet").click(function () {
+            var id = $("#guncelle-id").val();
+            var ad = $("#guncelle-ad").val();
+            var soyad = $("#guncelle-soyad").val();
+
+            $.ajax({
+                url: '/Ogrenci/OgrenciGuncelleAjax',
+                type: 'POST',
+                data: { Ogrenciid: id, Ad: ad, Soyad: soyad },
+                success: function (response) {
+                    if (response.success) {
+                        $('#row-' + id + ' .ad').text(ad);
+                        $('#row-' + id + ' .soyad').text(soyad);
+                        $("#guncelleForm").hide();
+                        alert('Öğrenci başarıyla güncellendi.');
+                    } else {
+                        alert('Güncelleme başarısız.');
+                    }
+                },
+                error: function () {
+                    alert('Hata oluştu.');
+                }
+            });
+        });
+    });
+</script>
